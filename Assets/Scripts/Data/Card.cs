@@ -10,24 +10,20 @@ public enum CardSuit {
   Hearts
 }
 
-public class Card {
-  private int rank;
+public struct Card {
   public int Rank {
     // 0 is Joker, 1 is Ace, 11 is Jack, 12 is Queen, 13 is King
-    get => this.rank;
-    private set {
-      if (value < 0 || value > 13) {
-        this.rank = 0;
-      } else {
-        this.rank = value;
-      }
-    }
+    get;
   }
 
-  public CardSuit Suit { get; private set; }
+  public CardSuit Suit { get; }
 
   public Card(int rank, CardSuit suit) {
-    this.Rank = rank;
+    if (rank < 0 || rank > 13) {
+      this.Rank = 0;
+    } else {
+      this.Rank = rank;
+    }
     this.Suit = suit;
   }
 }
