@@ -303,6 +303,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 674713030418040717, guid: 51b87bc402d695740bdd93bbd8a48f44,
+        type: 3}
+      propertyPath: FaceUp
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1267080151765401428, guid: 51b87bc402d695740bdd93bbd8a48f44,
         type: 3}
       propertyPath: m_Name
