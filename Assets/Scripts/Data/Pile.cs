@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
-public class Pile : MonoBehaviour
-{
+public class Pile : MonoBehaviour {
+  public bool isDeck = true;
+  
     private void MoveCardPile(Card card, Pile pile){
-        CardObject obj = CardManager.GetCards(1, Hearts);
-        SetPile(obj, pile);
+      CardObject obj = CardManager.GetCards(card)[0];
+      obj.transform.parent = pile.transform;
+      pile.RearrangeCards();
     }
 
-    private void SetPile(Card c, Pile p){
-        c.transform.parent = p.transform;
+    public void RearrangeCards() {
+      
     }
 }
