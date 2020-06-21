@@ -15,8 +15,8 @@ public class CardSpawner : MonoBehaviour
   void Update()
   {
     if (Input.anyKey) {
-      foreach (GameObject card in CardManager.GetCards(new Card(6, CardSuit.Clubs))) {
-        card.GetComponent<CardObject>().FaceUp = !card.GetComponent<CardObject>().FaceUp;
+      foreach (CardObject card in CardManager.GetCards(new Card(6, CardSuit.Clubs))) {
+        card.FaceUp = !card.FaceUp;
       }
     }
   }

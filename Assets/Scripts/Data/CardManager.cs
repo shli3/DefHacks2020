@@ -3,17 +3,17 @@ using System.Linq;
 using UnityEngine;
 
 public static class CardManager {
-  private static List<Dictionary<Card, GameObject>> decks;
+  private static List<Dictionary<Card, CardObject>> decks;
 
   public static void InitializeCards(int numDecks, GameObject cardPrefab, Transform parent) {
-    decks = new List<Dictionary<Card, GameObject>>();
+    decks = new List<Dictionary<Card, CardObject>>();
     for (int deck = 0; deck < numDecks; deck++) {
-      Dictionary<Card, GameObject> currDeck = new Dictionary<Card, GameObject>();
+      Dictionary<Card, CardObject> currDeck = new Dictionary<Card, CardObject>();
       for (int rank = 1; rank <= 13; rank++) {
         for (int suit = 0; suit < 4; suit++) {
-          GameObject card = GameObject.Instantiate(cardPrefab, new Vector3(rank, deck, suit), Quaternion.identity, parent);
+          CardObject card = GameObject.Instantiate(cardPrefab, new Vector3(rank, deck, suit), Quaternion.identity, parent).GetComponent<CardObject>();
           Card cardData = new Card(rank, (CardSuit) suit);
-          card.GetComponent<CardObject>().InitializeSuit(cardData);
+          card.InitializeSuit(cardData);
           currDeck.Add(cardData, card);
         }
       }
@@ -21,7 +21,7 @@ public static class CardManager {
     }
   }
 
-  public static GameObject[] GetCards(Card cardData) {
+  public static CardObject[] GetCards(Card cardData) {
     return decks.Select(x => x[cardData]).ToArray();
   }
 }
