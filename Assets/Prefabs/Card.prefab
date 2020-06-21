@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ef501ba220ea045bd814e5c0be49b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FaceUp: 0
+  FaceUp: 1
   flipTime: 0.5
   model: {fileID: 3945380448230006044}
 --- !u!1001 &2378282395412971928

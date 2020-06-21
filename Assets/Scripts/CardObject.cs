@@ -7,12 +7,12 @@ public class CardObject : MonoBehaviour {
   public bool FaceUp;
   private float zRotation;
   private bool wasFaceUp;
-  public Card cardData;
+  private Card cardData;
   [SerializeField] private float flipTime = 0.5f;
   [SerializeField] private MeshRenderer model;
 
-  private void Awake() {
-    this.cardData = new Card(0, CardSuit.Clubs);
+  public void InitializeSuit(Card card) {
+    this.cardData = card;
     this.model.material = CardMaterialRepo.GetCardMaterial(this.cardData);
   }
 
