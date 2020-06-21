@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum CardSuit {
-   Hearts=1,
-   Clubs=2,
-   Diamonds=3,
-   Spades=4,
+   Hearts,
+   Clubs,
+   Diamonds,
+   Spades,
 }
  
 public class Card {
@@ -37,7 +37,7 @@ public class Deck {
    private List<Card> _discardPile = new List<Card>();
  
    public void Shuffle() {
-      /* To Do */
+      /* To Do: Code needs to be complete*/
    }
  
    public Card TakeCard() {
@@ -52,5 +52,5 @@ public class Deck {
       return card;
    }
  
-   /* ...etc... */
+   /* any source to add... */
 }
