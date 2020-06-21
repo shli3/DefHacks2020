@@ -17,6 +17,14 @@ public static class CardManager {
           currDeck.Add(cardData, card);
         }
       }
+          CardObject card0 = GameObject.Instantiate(cardPrefab, new Vector3(0, deck, 0), Quaternion.identity, parent).GetComponent<CardObject>();
+          card0.InitializeSuit(new Card(0, CardSuit.Hearts));
+          currDeck.Add(new Card(0, CardSuit.Hearts), card0);
+          currDeck.Add(new Card(0, CardSuit.Diamonds), card0);
+          CardObject card1 = GameObject.Instantiate(cardPrefab, new Vector3(0, deck, 0), Quaternion.identity, parent).GetComponent<CardObject>();
+          card1.InitializeSuit(new Card(0, CardSuit.Spades));
+          currDeck.Add(new Card(0, CardSuit.Spades), card1);
+          currDeck.Add(new Card(0, CardSuit.Clubs), card1);
       decks.Add(currDeck);
     }
   }
@@ -24,4 +32,6 @@ public static class CardManager {
   public static CardObject[] GetCards(Card cardData) {
     return decks.Select(x => x[cardData]).ToArray();
   }
+
+  
 }
