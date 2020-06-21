@@ -7,7 +7,7 @@ public enum CardSuit {
   Spades,
   Diamonds,
   Clubs,
-  Hearts
+  Hearts,
 }
 
 public struct Card {
