@@ -2,33 +2,36 @@
 using System.Linq;
 using UnityEngine;
 
-public class CardManager : MonoBehaviour {
-  private List<Dictionary<Card, GameObject>> decks;
-  [SerializeField] private GameObject cardPrefab;
+public static class CardManager {
+  private static List<Dictionary<Card, CardObject>> decks;
 
-  public void InitializeCards(int numDecks) {
-    this.decks = new List<Dictionary<Card, GameObject>>();
+  public static void InitializeCards(int numDecks, GameObject cardPrefab, Transform parent) {
+    decks = new List<Dictionary<Card, CardObject>>();
     for (int deck = 0; deck < numDecks; deck++) {
-      Dictionary<Card, GameObject> currDeck = new Dictionary<Card, GameObject>();
+      Dictionary<Card, CardObject> currDeck = new Dictionary<Card, CardObject>();
       for (int rank = 1; rank <= 13; rank++) {
         for (int suit = 0; suit < 4; suit++) {
-          GameObject card = Instantiate(cardPrefab, new Vector3(rank, deck, suit), Quaternion.identity);
+          CardObject card = GameObject.Instantiate(cardPrefab, new Vector3(rank, deck, suit), Quaternion.identity, parent).GetComponent<CardObject>();
           Card cardData = new Card(rank, (CardSuit) suit);
-          card.GetComponent<CardObject>().InitializeSuit(cardData);
+          card.InitializeSuit(cardData);
           currDeck.Add(cardData, card);
         }
       }
-      this.decks.Add(currDeck);
+          CardObject card0 = GameObject.Instantiate(cardPrefab, new Vector3(0, deck, 0), Quaternion.identity, parent).GetComponent<CardObject>();
+          card0.InitializeSuit(new Card(0, CardSuit.Hearts));
+          currDeck.Add(new Card(0, CardSuit.Hearts), card0);
+          currDeck.Add(new Card(0, CardSuit.Diamonds), card0);
+          CardObject card1 = GameObject.Instantiate(cardPrefab, new Vector3(0, deck, 0), Quaternion.identity, parent).GetComponent<CardObject>();
+          card1.InitializeSuit(new Card(0, CardSuit.Spades));
+          currDeck.Add(new Card(0, CardSuit.Spades), card1);
+          currDeck.Add(new Card(0, CardSuit.Clubs), card1);
+      decks.Add(currDeck);
     }
   }
 
-  public GameObject[] GetCards(Card cardData) {
-    return this.decks.Select(x => x[cardData]).ToArray();
+  public static CardObject[] GetCards(Card cardData) {
+    return decks.Select(x => x[cardData]).ToArray();
   }
 
-  public void Start() {
-    //TODO: remove these lines, they are just 
-    this.InitializeCards(2);
-    this.GetCards(new Card(4, CardSuit.Diamonds))[0].GetComponent<CardObject>().FaceUp = false;
-  }
+  
 }
